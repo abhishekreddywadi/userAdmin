@@ -1,0 +1,65 @@
+.add-modal.add-new {
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+  .modal-content {
+    background-color: #fae0e1 !important;
+    border: 2px solid #f36b81;
+  }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    input,
+    select {
+      background: #fff;
+      outline: none;
+      border: 1px solid #c0c0c0;
+      padding: 9px 5px;
+      min-width: 140px;
+      min-height: 40px;
+    }
+    label {
+      line-height: 1.4;
+      min-height: 20px;
+      margin-bottom: 2px;
+    }
+    span.uploaded-img {
+      height: 80px;
+      margin-bottom: 0px !important;
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #cacaca;
+      background: #fff;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .input-container.img-container {
+    flex-direction: row !important;
+    align-items: center;
+  }
+
+  .modal-footer {
+    button {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+      color: #fff;
+      min-width: 120px;
+      border-radius: 1px;
+      background: #f36b81;
+      padding: 6px 15px;
+    }
+  }
+}

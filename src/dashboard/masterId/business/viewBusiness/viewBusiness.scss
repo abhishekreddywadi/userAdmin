@@ -1,0 +1,98 @@
+.manage-id-table {
+    margin-bottom: 20px;
+    color: #000;
+    .header-center-pills {
+      width: fit-content;
+      justify-content: center;
+      gap: 15px;
+  }
+  
+  .header-center-pills select {
+      background: #fff;
+      outline: none;
+      padding: 2px 8px;
+      color: #000;
+      font-size: 13px;
+      border: none;
+  }
+  
+    h5 {
+      margin-bottom: 20px;
+      font-size: 15px;
+      font-weight: normal;
+    }
+  
+    .table {
+      margin-bottom: 0;
+      tr {
+        th {
+            font-weight: bold;
+        }
+        th, td {
+            color: #000;
+            border: 1px solid rgba(91, 146, 255, 0.15) !important;
+            padding: 20px 10px;
+        }
+      }
+    }
+  
+    .id-request, .staff-info {
+      display: flex;
+      align-items: center;
+  
+      .user-image, .staff-image {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+    }
+  
+    .status-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+  
+      &.accepted {
+        background-color: #28a745;
+      }
+  
+      &.pending {
+        background-color: #ffc107;
+      }
+  
+      &.rejected, &.declined {
+        background-color: #dc3545;
+      }
+      &.in-review {
+        background-color: #5e93fb;
+      }
+      
+    }
+  
+    .export-button {
+      float: right;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .page-item {
+      .page-link {
+        color: #ee6d81;
+      }
+    }
+    .page-item.active {
+      .page-link {
+        background-color: #ee6d81 !important;
+        border-color: #ee6d81 !important;
+        color: #fff;
+      }
+    }
+  }
+  

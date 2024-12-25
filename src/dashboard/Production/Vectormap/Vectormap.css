@@ -1,0 +1,7 @@
+.jvectormap-container{
+    background-color: transparent !important;
+    height: 220px !important;
+}
+.jvectormap-container svg{
+    height: 100%  !important;
+}

@@ -1,0 +1,133 @@
+.plan-packages.all-plan {
+    .view-mode-switcher {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
+      button {
+        color: #fff;
+        display: block;
+        padding: 0.32rem 0.8rem;
+        border-radius: 4px;
+        outline: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        background: #F26B80;
+        gap: 8px;
+        border: 1px solid #fff;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 13px;
+      }
+    }
+
+    .view-mode-switcher.view-mode-top {
+        margin-top: -41px;
+        position: relative;
+        z-index: 4;
+        width: fit-content;
+        margin-left: auto;
+        button {
+            border: 0;
+            gap: 4px;
+            margin-top: 0;
+            background: #fff;
+            color: #F26B80;
+            svg {
+                width: 11px;
+                height: 11px;
+            }
+        }
+    }
+
+      .nav-tabs {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        padding: 0.5rem 1rem;
+        .nav-link {
+          color: #F26B80;
+          display: block;
+          padding: 0.32rem 0.8rem;
+          border-radius: 4px !important;
+        }
+        .nav-link.active {
+          background: #F26B80;
+          color: #000;
+        }
+      }
+  
+    .plan-card {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      margin-top: 60px;
+  
+      h5 {
+        background-color: #ff3f6d;
+        padding: 10px;
+        color: #fff;
+        font-size: 1.5rem;
+        padding: 60px 15px;
+        border-radius: 10px;
+        margin: 0 auto -60px;
+        transform: translateY(-85px);
+      }
+
+      img {
+        max-height: 200px;
+        object-fit: contain;
+        margin: 20px 0;
+      }
+  
+      h6 {
+        margin-top: 10px;
+        color: #fff;
+        font-size: 1.2rem;
+      }
+  
+      p {
+        margin-top: 10px;
+        color: #ccc;
+      }
+    }
+  
+    .plan-table {
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      background: #fff;
+      padding: 15px;
+      th, td {
+        padding: 15px;
+        text-align: center;
+      }
+      th {
+        background-color: #F26B80;
+        font-weight: bold;
+        border-right: 4px solid #fff !important;
+        color: #fff;
+        &:last-child {
+          border-right: 0 !important;
+        }
+      }
+      td {
+        background-color: #fcd7de;
+        color: #000;
+        img {
+          max-height: 60px;
+        }
+      }
+    }
+
+    .tab-content {
+        border-top: 1px solid #e3d5e5;
+    }
+  }
+  

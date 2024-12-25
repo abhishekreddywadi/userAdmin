@@ -1,0 +1,53 @@
+{
+  "name": "adminuxpro",
+  "homepage": "http://localhost:3000/",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@fullcalendar/core": "^4.3.1",
+    "@fullcalendar/daygrid": "^4.3.0",
+    "@fullcalendar/react": "^4.3.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-daterangepicker": "^3.0.5",
+    "chart.js": "^2.9.2",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-bootstrap-daterangepicker": "^4.1.0",
+    "react-bootstrap-datetimerangepicker": "^2.0.4",
+    "react-chartjs-2": "^2.8.0",
+    "react-circular-progressbar": "^2.0.3",
+    "react-dom": "^16.10.2",
+    "react-jvectormap": "0.0.14",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "^5.0.1",
+    "react-webcam": "^7.2.0",
+    "sass": "^1.77.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

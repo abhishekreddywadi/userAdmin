@@ -1,0 +1,41 @@
+.daterangepicker{
+    opacity: 1 !important;
+}
+
+.nav-pills a.nav-link {
+    color: #F26B80;
+    display: block;
+    padding: 0.32rem 0.8rem;
+}
+
+.nav-pills a.nav-link:hover,
+.nav-pills a.nav-link.active{
+    background: #F26B80;
+    color: #000;
+}
+
+.header-right-pills {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    top: 8px;
+}
+
+.navbar .tab-content {
+    width: 100%;
+}
+
+.sub-head-nav {
+    position: relative;
+}
+
+.sub-head-nav::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #e3d5e5;
+}
