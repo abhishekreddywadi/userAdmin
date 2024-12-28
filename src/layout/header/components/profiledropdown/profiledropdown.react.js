@@ -11,7 +11,7 @@ var sectionStyle = {
 const Profiledropdown = () => {
 
     return (
-        <Dropdown className="nav-item ml-0 ml-sm-4">
+        <Dropdown className="nav-item ml-0 ml-sm-4 ">
             <Dropdown.Toggle className="nav-link profile-link active" id="navbarDropdown6" variant="link" >
                 <figure className="rounded avatar avatar-30">
                     <img src={userimage} alt="adminux pro" />
@@ -23,7 +23,7 @@ const Profiledropdown = () => {
                     <i className="material-icons">expand_more</i>
                 </figure>
             </Dropdown.Toggle>
-            <Dropdown.Menu alignRight className="w-300 pt-0 overflow-hidden active" aria-labelledby="navbarDropdown6">
+            <Dropdown.Menu alignRight className="w-300 pt-0 overflow-hidden active" style={{zIndex:"9999"}} aria-labelledby="navbarDropdown6">
                 <div className="position-relative text-center rounded py-5">
                     <div className="background" style={sectionStyle}></div>
                 </div>

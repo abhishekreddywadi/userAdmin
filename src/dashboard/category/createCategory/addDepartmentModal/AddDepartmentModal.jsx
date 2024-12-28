@@ -81,10 +81,7 @@ function AddDepartmentModal({showDepartmentModal, handleDepartmentModalHide, dep
                             <div className="input-container check">
                                 <label htmlFor="">Who can Register</label>
                                 <div className="row">
-                                    <div className="col-4 d-flex align-items-center" style={{gap: 5}}>
-                                        <input type="checkbox" name="" id="mu" />
-                                        <label className='mb-0' htmlFor="mu">Master User</label>
-                                    </div>
+                                   
                                     <div className="col-4 d-flex align-items-center" style={{gap: 5}}>
                                         <input type="checkbox" name="" id="mbi" />
                                         <label className='mb-0' htmlFor="mbi">MBI</label>

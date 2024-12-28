@@ -64,7 +64,7 @@ const categoryTableData = [
   },
   {
     icon: UserThree,
-    name: "Class",
+    name: "Home Society",
     createdBy: "Sunil Yadav",
     createdId: "ID MUB12345",
     date: "25/12/2024",
@@ -72,6 +72,13 @@ const categoryTableData = [
   {
     icon: UserThree,
     name: "Course",
+    createdBy: "Sunil Yadav",
+    createdId: "ID MUB12345",
+    date: "25/12/2024",
+  },
+  {
+    icon: UserThree,
+    name: "home society",
     createdBy: "Sunil Yadav",
     createdId: "ID MUB12345",
     date: "25/12/2024",
@@ -101,7 +108,29 @@ const categoryDepartmentTableData = [
     parentBusiness: "Business",
   },
 ];
-
+const categoryDepartmentTableDataForHome = [
+  {
+    icon: UserOne,
+    category: "Society ",
+    subNo: 35,
+    department: "IT Department",
+    parentBusiness: "Individual",
+  },
+  {
+    icon: UserTwo,
+    category: "Apartment",
+    subNo: 41,
+    department: "IT Department",
+    parentBusiness: "Individual",
+  },
+  {
+    icon: UserThree,
+    category: "Villas",
+    subNo: 43,
+    department: "IT Department",
+    parentBusiness: "Business",
+  },
+];
 const CreateCategory = () => {
   const [stepOneActive, setStepOneActive] = useState(true);
   const [stepTwoActive, setStepTwoActive] = useState(false);
@@ -320,7 +349,7 @@ const CreateCategory = () => {
                     <>
                     <div className="add-category d-md-flex align-items-center justify-content-between text-center pt-4">
                       <h3 className="mb-3 mb-md-0 text-dark font-weight-bold h4">
-                        All Category Type
+                        All Category Type 
                       </h3>
                       <button type="button" className="creation" onClick={handleAddModalShow}>
                         Add New
@@ -351,6 +380,7 @@ const CreateCategory = () => {
                               <select name="" id="">
                                 <option value="">Individual</option>
                               </select>
+                              
                             </div>
                             <div className="input-container d-flex flex-column">
                               <label htmlFor="" className="d-flex"></label>
@@ -814,6 +844,149 @@ const CreateCategory = () => {
                             </thead>
                             <tbody>
                               {categoryDepartmentTableData?.map((data, i) => {
+                                return (
+                                  <tr>
+                                    <td>{i + 1}</td>
+                                    <td>
+                                      <img src={data.icon} alt="icon" />
+                                    </td>
+                                    <td>{data.category}</td>
+                                    <td>{data.subNo}</td>
+                                    <td>{data.department}</td>
+                                    <td>{data.parentBusiness}</td>
+                                    <td>
+                                      <p>
+                                        <Form.Check // prettier-ignore
+                                          type="switch"
+                                          id={`custom-switch${i + 1}`}
+                                        />
+                                        <span>Active</span>
+                                      </p>
+                                      <p>
+                                        <button
+                                          type="button"
+                                          className="action-button"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-pencil-square"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+                                            />
+                                          </svg>
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="action-button"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-trash"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                          </svg>
+                                        </button>
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <button type="button" className="creation" onClick={(e) => handleStepThree(e, selectedData)}>
+                                        Sub Category
+                                      </button>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    )
+                    : selectedData == "Home Society" ? (
+                      <>
+                        <div className="add-category d-md-flex align-items-center justify-content-between text-center pt-4">
+                          <h3 className="mb-3 mb-md-0 text-dark font-weight-bold h4">
+                            All Home Society Category
+                          </h3>
+                          <button type="button" className="creation" onClick={handleAddEventModalShow}>
+                            Add Category
+                          </button>
+                        </div>
+                        <div className="crete-category-filter  mt-4 mt-md-5 ">
+                          <div className="entries mb-2">
+                            Show
+                            <select className="mx-2">
+                              <option value="">5</option>
+                              <option value="">10</option>
+                              <option value="">15</option>
+                              <option value="">20</option>
+                            </select>
+                            entries
+                          </div>
+                          <div className="filters mb-4">
+                            <div className="row">
+                              <div className="col-md-4 d-md-flex">
+                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                  </svg>
+                                  Back
+                                </button>
+                              </div>
+                              <div
+                                className="col-12 col-md-4 d-flex align-items-center"
+                                style={{ gap: 15 }}
+                              >
+                                <div className="input-container d-flex flex-column">
+                                  <label htmlFor="" className="d-flex">
+                                    Filter
+                                  </label>
+                                  <select name="" id="">
+                                    <option value="">Individual</option>
+                                  </select>
+                                </div>
+                                <div className="input-container d-flex flex-column">
+                                  <label htmlFor="" className="d-flex"></label>
+                                  <select name="" id=""></select>
+                                </div>
+                              </div>
+                              <div className="col-12 col-md-4">
+                                <div className="input-container d-flex flex-column">
+                                  <label htmlFor="">Search</label>
+                                  <input type="search" name="" id="" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="category-table">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>Sno.</th>
+                                <th>Icon</th>
+                                <th>Category</th>
+                                <th>Sub No.</th>
+                                <th>Department</th>
+                                <th>Parent Business</th>
+                                <th>Status</th>
+                                <th>Add</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {categoryDepartmentTableDataForHome?.map((data, i) => {
                                 return (
                                   <tr>
                                     <td>{i + 1}</td>
@@ -1495,7 +1668,7 @@ const CreateCategory = () => {
                             </div>
                           </div>
                           <div className="list-right">
-                          <h5 className="mb-4">App list Main</h5>
+                          <h5 className="mb-4">Api list Main</h5>
                           <div className="list-container">
                             <DragDropContext onDragEnd={onDragEnd}>
                               <Droppable droppableId="features">

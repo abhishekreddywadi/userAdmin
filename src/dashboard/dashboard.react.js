@@ -33,6 +33,8 @@ import CreateUser from "./masterId/users/createUser/CreateUser";
 import MasterIdReRequest from "./masterId/masterRequest/MasterIdReRequest";
 import MasterProfile from "./masterId/profile/MasterProfile";
 import UserProfileDetails from "./masterId/users/viewUser/userTable/UserProfileDetails";
+import UserMessage from "./masterId/users/viewUser/userMessage/UserMessage";
+import RfIdAttendance from "./manageAttendance/rfIdAttendance/RfIdAttendance";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -74,6 +76,7 @@ const Dashboard = () => {
             <Route path="/master-request" element={<MasterRequest />} />
             <Route path="/master-profile" element={<MasterProfile />} />
             <Route path="/user-profile-details" element={<UserProfileDetails />} />
+            <Route path="/rfid-machine" element={<RfIdAttendance />} />
             <Route
               path="/new-user-details"
               element={<UserRequestAboveSixteen />}
@@ -104,6 +107,7 @@ const Dashboard = () => {
             <Route path="/individual-request" element={<IndividualRequest />} />
             <Route path="/business-request" element={<BusinessRequest />} />
             <Route path="/view-user" element={<ViewUser />} />
+            <Route path="/user-message" element={<UserMessage />} />
             <Route path="/create-user" element={<CreateUser />} />
             <Route path="/view-business" element={<ViewBusiness />} />
             {/* Fallback route for undefined paths */}

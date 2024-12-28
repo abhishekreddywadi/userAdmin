@@ -66,7 +66,11 @@ function ViewUser() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
+const  handleButtonClick=()=>{
+  console.log("clicked");
+  
+navigate("/user-message")
+}
   // Calculate the indices for slicing the ordersData
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -208,6 +212,7 @@ function ViewUser() {
                         </ul>
                         <button
                           type="button"
+                          onClick={handleButtonClick}
                           className="btn d-flex justify-content-center mt-4 ml-auto"
                         >
                           Message
