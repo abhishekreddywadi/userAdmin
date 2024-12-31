@@ -104,7 +104,7 @@ class Networking extends React.Component {
             </div>
             <div className="row">
                 <div className="col-12">
-                <div className="card border-0 shadow-sm mb-4">
+                <div className="card border-0 shadow-sm overflow-hidden mb-4">
                     <div className="card-header border-0 bg-none">
                     <div className="row">
                         <div className="col">
@@ -119,7 +119,7 @@ class Networking extends React.Component {
                             <i className="material-icons md-18 mr-2">print</i> Print
                         </button>
                         <button className="btn btn-sm btn-outline-template ml-2">
-                            <i className="material-icons md-18 mr-2">cloud_download</i> Export
+                            <i className="material-icons md-18">cloud_download</i> Export
                         </button>
                         <Dropdown className="dropdown d-inline-block">
                                 <Dropdown.Toggle className="btn dropdown-toggle btn-sm btn-link" type="button" variant="link">
@@ -392,6 +392,9 @@ class Networking extends React.Component {
                             <th className="all">Order ID</th>
                             <th className="min-tablet">Order From</th>
                             <th className="min-desktop">Date</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Transaction ID</th>
                             <th>Status</th>
                             <th className="min-desktop">Order Receiver </th>
                             <th />
@@ -413,6 +416,15 @@ class Networking extends React.Component {
                             </td>
                             <td>12-12-2019</td>
                             <td>
+                                <span className="text-success font-weight-bold">$1,299.00</span>
+                            </td>
+                            <td>
+                                <span className="badge badge-info">Credit Card</span>
+                            </td>
+                            <td>
+                                <span className="text-muted">TXN_123456789</span>
+                            </td>
+                            <td>
                             <div className="btn-success btn btn-sm">Accepted</div>
                             </td>
                             <td>
@@ -432,9 +444,9 @@ class Networking extends React.Component {
                                     <i className="material-icons">more_horiz</i>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu className="dropdown-menu dropdown-menu-sm dropdown-menu-right" alignRight>
-                                    <a className="dropdown-item" href="#">View</a>
-                                    <a className="dropdown-item" href="#">Edit</a>
-                                    <a className="dropdown-item" href="#">Delete</a>
+                                    <a className="dropdown-item" href="#">View Details</a>
+                                    <a className="dropdown-item" href="#">Download Invoice</a>
+                                    <a className="dropdown-item text-danger" href="#">Report Issue</a>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </td>
@@ -453,6 +465,15 @@ class Networking extends React.Component {
                             </div>
                             </td>
                             <td>12-12-2019</td>
+                            <td>
+                                <span className="text-success font-weight-bold">$899.00</span>
+                            </td>
+                            <td>
+                                <span className="badge badge-warning">PayPal</span>
+                            </td>
+                            <td>
+                                <span className="text-muted">TXN_987654321</span>
+                            </td>
                             <td>
                             <div className="btn-primary btn btn-sm">Accepted</div>
                             </td>
@@ -473,9 +494,9 @@ class Networking extends React.Component {
                                     <i className="material-icons">more_horiz</i>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu className="dropdown-menu dropdown-menu-sm dropdown-menu-right" alignRight>
-                                    <a className="dropdown-item" href="#">View</a>
-                                    <a className="dropdown-item" href="#">Edit</a>
-                                    <a className="dropdown-item" href="#">Delete</a>
+                                    <a className="dropdown-item" href="#">View Details</a>
+                                    <a className="dropdown-item" href="#">Download Invoice</a>
+                                    <a className="dropdown-item text-danger" href="#">Report Issue</a>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </td>
@@ -494,6 +515,15 @@ class Networking extends React.Component {
                             </div>
                             </td>
                             <td>12-12-2019</td>
+                            <td>
+                                <span className="text-success font-weight-bold">$1,299.00</span>
+                            </td>
+                            <td>
+                                <span className="badge badge-info">Credit Card</span>
+                            </td>
+                            <td>
+                                <span className="text-muted">TXN_123456789</span>
+                            </td>
                             <td>
                             <div className="btn-warning btn btn-sm">Accepted</div>
                             </td>
@@ -514,9 +544,9 @@ class Networking extends React.Component {
                                     <i className="material-icons">more_horiz</i>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu className="dropdown-menu dropdown-menu-sm dropdown-menu-right" alignRight>
-                                    <a className="dropdown-item" href="#">View</a>
-                                    <a className="dropdown-item" href="#">Edit</a>
-                                    <a className="dropdown-item" href="#">Delete</a>
+                                    <a className="dropdown-item" href="#">View Details</a>
+                                    <a className="dropdown-item" href="#">Download Invoice</a>
+                                    <a className="dropdown-item text-danger" href="#">Report Issue</a>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </td>
@@ -535,6 +565,15 @@ class Networking extends React.Component {
                             </div>
                             </td>
                             <td>12-12-2019</td>
+                            <td>
+                                <span className="text-success font-weight-bold">$899.00</span>
+                            </td>
+                            <td>
+                                <span className="badge badge-warning">PayPal</span>
+                            </td>
+                            <td>
+                                <span className="text-muted">TXN_987654321</span>
+                            </td>
                             <td>
                             <div className="btn-danger btn btn-sm">Accepted</div>
                             </td>
@@ -555,9 +594,9 @@ class Networking extends React.Component {
                                     <i className="material-icons">more_horiz</i>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu className="dropdown-menu dropdown-menu-sm dropdown-menu-right" alignRight>
-                                    <a className="dropdown-item" href="#">View</a>
-                                    <a className="dropdown-item" href="#">Edit</a>
-                                    <a className="dropdown-item" href="#">Delete</a>
+                                    <a className="dropdown-item" href="#">View Details</a>
+                                    <a className="dropdown-item" href="#">Download Invoice</a>
+                                    <a className="dropdown-item text-danger" href="#">Report Issue</a>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </td>
@@ -576,6 +615,15 @@ class Networking extends React.Component {
                             </div>
                             </td>
                             <td>12-12-2019</td>
+                            <td>
+                                <span className="text-success font-weight-bold">$1,299.00</span>
+                            </td>
+                            <td>
+                                <span className="badge badge-info">Credit Card</span>
+                            </td>
+                            <td>
+                                <span className="text-muted">TXN_123456789</span>
+                            </td>
                             <td>
                             <div className="btn-success btn btn-sm">Accepted</div>
                             </td>
@@ -596,9 +644,9 @@ class Networking extends React.Component {
                                     <i className="material-icons">more_horiz</i>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu className="dropdown-menu dropdown-menu-sm dropdown-menu-right" alignRight>
-                                    <a className="dropdown-item" href="#">View</a>
-                                    <a className="dropdown-item" href="#">Edit</a>
-                                    <a className="dropdown-item" href="#">Delete</a>
+                                    <a className="dropdown-item" href="#">View Details</a>
+                                    <a className="dropdown-item" href="#">Download Invoice</a>
+                                    <a className="dropdown-item text-danger" href="#">Report Issue</a>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </td>

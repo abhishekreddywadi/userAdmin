@@ -154,7 +154,14 @@ const Production = () => {
       >
         <Tab eventKey="home" title="User & Master ID Request">
           <div className="dashboard">
-            <div className="dash-table user-table">
+            <div
+              className="dash-table user-table"
+              style={{
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+                borderRadius: "10px",
+                overflow: "hidden",
+              }}
+            >
               <div className="table-header">
                 <h2>New user</h2>
                 <p>Today 26/12/2024</p>

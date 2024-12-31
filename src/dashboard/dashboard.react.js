@@ -35,6 +35,7 @@ import MasterProfile from "./masterId/profile/MasterProfile";
 import UserProfileDetails from "./masterId/users/viewUser/userTable/UserProfileDetails";
 import UserMessage from "./masterId/users/viewUser/userMessage/UserMessage";
 import RfIdAttendance from "./manageAttendance/rfIdAttendance/RfIdAttendance";
+import ViewAllPayments from "./Networking/viewAllPayments/ViewAllPayments";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -68,6 +69,7 @@ const Dashboard = () => {
           <Routes>
             <Route path="/" element={<Production />} />
             <Route path="/networking" element={<Networking />} />
+            <Route path="/view-all-payments" element={<ViewAllPayments />} />
             <Route path="/servererror" element={<Servererror />} />
             <Route path="/notfound" element={<Notfound />} />
             <Route path="/create-category" element={<CreateCategory />} />

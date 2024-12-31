@@ -103,6 +103,9 @@ class Sidebar extends Component {
                 <NavLink className="nav-link text-dark" to="/networking" activeClassName="active"><span>Payment</span></NavLink>
               </div>
               <div className="nav-item">
+                <NavLink className="nav-link text-dark" to="/view-all-payments" activeClassName="active"><span>  View All Payment</span></NavLink>
+              </div>
+              <div className="nav-item">
                 <NavLink className="nav-link text-dark" to="/networking" activeClassName="active"><span>Request</span></NavLink>
               </div>
               <div className="nav-item">
