@@ -34,96 +34,70 @@ function Profile() {
               className="mb-3 mt-5"
           >
             <Tab eventKey="USER INFO" title="USER INFO">
-                 <div className="profile-details d-flex flex-wrap align-items-center gap-4">
-            <div className="primary-details">
-              <div className="profile-img"></div>
-              <div className="profile-content">
-                <h6>Pankaj Singh</h6>
-                <span>MUI_123456</span>
-                <span>3/05/1993</span>
-                <p>Account Created on</p>
-                <p>12/10/2024 </p>
+              <div className="profile-details p-4 mb-4">
+                <div className="profile-content-wrapper d-flex justify-content-between align-items-start">
+                  <div className="left-content">
+                    <div className="d-flex align-items-start gap-4">
+                      <div className="profile-img"></div>
+                      <div className="profile-content">
+                        <h6 className="mb-2">Pankaj Singh</h6>
+                        <span className="d-block mb-1 text-muted">MUI_123456</span>
+                        <span className="d-block mb-3 text-muted">3/05/1993</span>
+                        <p className="mb-1 text-muted">Account Created on</p>
+                        <p className="fw-medium">12/10/2024</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="right-content">
+                    <div className="info-item mb-4">
+                      <span className="label">Nick Name:</span>
+                      <span className="value">Panku</span>
+                    </div>
+                    <div className="info-item mb-3">
+                      <FontAwesomeIcon icon={faEnvelope} className="me-2" />
+                      <a href="mailto:pankajsingh@gmail.com">
+                        pankajsingh@gmail.com
+                      </a>
+                    </div>
+                    <div className="info-item mb-3">
+                      <FontAwesomeIcon icon={faPhone} className="me-2" />
+                      <a href="tel:+911234567890">+91 1234567890</a>
+                    </div>
+                    <div className="info-item mb-3">
+                      <FontAwesomeIcon icon={faHouse} className="me-2" />
+                      <span>Banglore, Karnataka, Bharat</span>
+                    </div>
+                    <div className="info-item mb-3 d-flex align-items-center justify-content-end">
+                      <img
+                        src={MotherImg}
+                        alt="mother"
+                        className="me-2"
+                        style={{ width: 24 }}
+                      />
+                      <span className="me-3">Rohani</span>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="edit-icon"
+                      />
+                    </div>
+                    <div className="info-item d-flex align-items-center justify-content-end">
+                      <img
+                        src={FatherImg}
+                        alt="father"
+                        className="me-2"
+                        style={{ width: 24 }}
+                      />
+                      <span className="me-3">Nill</span>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="edit-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="secondary-details d-flex align-items-end">
-              <div className="secondary-detail-box text-dark px-4">
-                <h6 className="mb-2">
-                  Nick Name: <strong className="pl-2">Panku</strong>
-                </h6>
-                <p className="d-flex align-items-center mb-2">
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    style={{
-                      color: "#000",
-                      marginRight: 15,
-                      width: 30,
-                      height: 18,
-                    }}
-                  />{" "}
-                  <a href="mailto:pankajsingh@gmail.com" className="text-dark">
-                    pankajsingh@gmail.com
-                  </a>
-                </p>
-                <p className="d-flex align-items-center mb-2">
-                  <FontAwesomeIcon
-                    icon={faPhone}
-                    style={{
-                      color: "#000",
-                      marginRight: 15,
-                      width: 30,
-                      height: 18,
-                    }}
-                  />
-                  <a href="tel:+911234567890" className="text-dark">
-                    +91 1234567890
-                  </a>
-                </p>
-                <p className="d-flex align-items-center mb-2">
-                  <FontAwesomeIcon
-                    icon={faHouse}
-                    style={{
-                      color: "#000",
-                      marginRight: 15,
-                      width: 30,
-                      height: 18,
-                    }}
-                  />
-                  Banglore, Karnataka, Bharat
-                </p>
-                <p className="d-flex align-items-center mb-2">
-                  <img
-                    src={MotherImg}
-                    alt="mother"
-                    style={{ width: 30, marginRight: 15 }}
-                  />
-                  Rohani
-                  <FontAwesomeIcon
-                    icon={faEdit}
-                    style={{ color: "#000", marginLeft: "auto" }}
-                  />
-                </p>
-                <p className="d-flex align-items-center mb-2">
-                  <img
-                    src={FatherImg}
-                    alt="father"
-                    style={{ width: 30, marginRight: 15 }}
-                  />
-                  Nill
-                  <FontAwesomeIcon
-                    icon={faEdit}
-                    style={{ color: "#000", marginLeft: "auto" }}
-                  />
-                </p>
-                
-              </div>
-             
-                        
-                       
-              
-            </div>
-           
-          </div>
-              </Tab>
+            </Tab>
               <Tab eventKey="business" title="USER ADDITIONAL INFO" >
                 Tab content for Contact
               </Tab>

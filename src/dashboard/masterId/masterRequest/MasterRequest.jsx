@@ -109,50 +109,41 @@ function MasterRequest() {
     <div className="container">
       <Form onSubmit={handleSubmit} className="registration-form my-5">
         <h5> New User Under-16 Form</h5>
-        <div className="profile-details d-flex flex-wrap  align-items-center gap-1 mb-4">
-            <div className="primary-details">
-              <div className="profile-img"></div>
-              <div className="profile-content">
-                <h6>Pankaj Singh</h6>
-                <h6>Pankaj Singh Guardian</h6>
-                <span>MUI_123456</span>
-                <span>3/05/1993</span>
-                <p>Account Created on</p>
-                <p>12/10/2024</p>
+        <div className="profile-details p-4 mb-4">
+          <div className="profile-content-wrapper d-flex justify-content-between align-items-start">
+            <div className="left-content">
+              <div className="d-flex align-items-start gap-4">
+                <div className="profile-img"></div>
+                <div className="profile-content">
+                  <h6 className="mb-2">Pankaj Singh</h6>
+                  <h6 className="mb-3">Pankaj Singh Guardian</h6>
+                  <span className="d-block mb-1 text-muted">MUI_123456</span>
+                  <span className="d-block mb-3 text-muted">3/05/1993</span>
+                  <p className="mb-1 text-muted">Account Created on</p>
+                  <p className="fw-medium">12/10/2024</p>
+                </div>
+              </div>
+            </div>
 
+            <div className="right-content">
+              <div className="info-item mb-4">
+                <span className="label">Nick Name:</span>
+                <span className="value">Panku</span>
+              </div>
+              <div className="info-item mb-3">
+                <FontAwesomeIcon icon={faEnvelope} className="me-2" />
+                <a href="mailto:pankajsingh@gmail.com">pankajsingh@gmail.com</a>
+              </div>
+              <div className="info-item mb-3">
+                <FontAwesomeIcon icon={faPhone} className="me-2" />
+                <a href="tel:+911234567890">+91 1234567890</a>
+              </div>
+              <div className="info-item">
+                <FontAwesomeIcon icon={faHouse} className="me-2" />
+                <span>Banglore, Karnataka, Bharat</span>
               </div>
             </div>
-            <div className="secondary-details d-flex align-items-center ml-auto">
-              <div className="secondary-detail-box text-dark px-4">
-                <h6 className="mb-2">Nick Name: Panku</h6>
-                <p className="d-flex align-items-center mb-2">
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    style={{ color: "#000", marginRight: 10 }}
-                  />{" "}
-                  <a href="mailto:pankajsingh@gmail.com" className="text-dark">
-                    pankajsingh@gmail.com
-                  </a>
-                </p>
-                <p className="d-flex align-items-center mb-2">
-                  <FontAwesomeIcon
-                    icon={faPhone}
-                    style={{ color: "#000", marginRight: 10 }}
-                  />
-                  <a href="tel:+911234567890" className="text-dark">
-                    +91 1234567890
-                  </a>
-                </p>
-                <p className="d-flex align-items-center mb-2">
-                  <FontAwesomeIcon
-                    icon={faHouse}
-                    style={{ color: "#000", marginRight: 10 }}
-                  />
-                  Banglore, Karnataka, Bharat
-                </p>
-              </div>
-              
-            </div>
+          </div>
         </div>
 
         <Row>
@@ -365,8 +356,6 @@ function MasterRequest() {
 
        
 
-       
-
         <Row>
           <Col md={6}>
             <Form.Group controlId="status">
@@ -404,7 +393,7 @@ function MasterRequest() {
                 <Form.Label>Father Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="fathername"
+                  name="fatherName"
                   value={formData.fatherName}
                   onChange={handleChange}
                   placeholder="Father Name"
@@ -416,7 +405,7 @@ function MasterRequest() {
                 <Form.Label>Mother Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="mothername"
+                  name="motherName"
                   value={formData.motherName}
                   onChange={handleChange}
                   placeholder="Mother Name"
@@ -428,7 +417,7 @@ function MasterRequest() {
                 <Form.Label>Local Address</Form.Label>
                 <Form.Control
                   type="text"
-                  name="localaddress"
+                  name="localAddress"
                   value={formData.localAddress}
                   onChange={handleChange}
                   placeholder="Local Address"
@@ -450,7 +439,7 @@ function MasterRequest() {
             />
             <label htmlFor="fileUpload mb-0">
               {formData.file ? (
-                <>
+                < >
                   <span className="d-flex w-100 h-100">
                     <img
                       src={URL.createObjectURL(formData.file)}
@@ -464,7 +453,7 @@ function MasterRequest() {
                       }}
                     />
                   </span>
-                </>
+                </ >
               ) : (
                 "Drop here or click here to upload"
               )}
