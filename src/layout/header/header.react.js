@@ -13,7 +13,14 @@ class Header extends Component {
   }
   render() {
     return (
-      <div className="row header">
+      <div
+        className="row header"
+        style={{
+          minHeight: "50px",
+          backgroundColor: "#4F8DEB",
+          color: "black",
+        }}
+      >
         <div className="container-fluid " id="header-container">
           <div className="row">
             <nav className="navbar col-12 navbar-expand ">

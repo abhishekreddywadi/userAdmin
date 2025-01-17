@@ -7,7 +7,7 @@ function AddNewModal({showAddModal, handleAddModalHide, addModalImageSrc, handle
   return (
     <Modal className='add-modal add-new' show={showAddModal} onHide={handleAddModalHide}>
         <Modal.Header closeButton>
-            <Modal.Title>Add Category</Modal.Title>
+            <Modal.Title>Add Business category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <form action="">

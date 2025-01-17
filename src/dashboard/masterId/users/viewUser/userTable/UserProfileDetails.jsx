@@ -1,551 +1,362 @@
-import React, { useContext } from 'react';
-import { Container, Tabs, Tab } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faHouse, faLock, faEllipsisVertical, faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import UserImg from '../../../../../assets/img/user1.png';
-import Shield from '../../../../../assets/img/shield.png';
-import FaceLock from '../../../../../assets/img/face-recognition.png';
+import React, { useState } from 'react';
+import './UserProfileDetails.scss';
 
-// //////////////////////////
-
-import ProofImg from "../../../../../assets/img/proof.webp";
-import AadharImg from "../../../../../assets/img/aadhaar-card.webp";
-import PanCardImg from "../../../../../assets/img/pan-card.jpg";
-import FatherImg from "../../../../../assets/img/father.png";
-import MotherImg from "../../../../../assets/img/mother.png";
-import UserContext from '../../../../../context/UserContext';
-import "./UserProfileDetails.scss";
-import "../../../profile/profile.scss";
-
-
-
-
-
-const UserProfileDetails = () => {
-  const { rfIdActive } = useContext(UserContext);
+const UserProfileDetails = ({ selectedUser }) => {
+  const [activeTab, setActiveTab] = useState('masterid');
 
   const userData = {
-    name: "Rohan Talpadhi",
-    id: "MU_123456",
-    dob: "3/xx/19xx",
-    age: "16+",
-    gender: "F",
-    accountDate: "25/12/2024",
-    nickName: "PANKU",
-    email: "user@gmail.com",
-    phone: "+311234567890",
-    location: "BANGALORE KARNATKA BHARAT",
+    name: "Pankaj",
+    email: "pankaj@gmail.com",
+    phone: "+911234567890",
+    location: "Bangalore, Karnataka, India, 144040",
     masterID: {
-      status: "NOT ACTIVE",
-      verified: true,
-      id: "BHXXXXXXXXXX67"
+      status: "ACCEPTED",
+      id: "567XXXXXX567",
+      verifiedBy: {
+        name: "Rohan Singh",
+        id: "MBS1234567",
+        signature: "PIN"
+      }
     },
     myID: {
-      status: "ACTIVE",
-      id: "BHXXXXXXXXXX67"
+      id: "btmv2523",
+      status: "active"
     },
-    businesses: "5/3"
+    business: {
+      total: 3,
+      active: 2,
+      pending: 1,
+      businesses: [
+        { name: "Business 1", type: "Retail", status: "Active" },
+        { name: "Business 2", type: "Service", status: "Active" },
+        { name: "Business 3", type: "Manufacturing", status: "Pending" }
+      ]
+    },
+    documents: {
+      proofs: [
+        { name: "ID Proof", status: "Verified", file: "id_proof.pdf" },
+        { name: "Address Proof", status: "Verified", file: "address_proof.pdf" }
+      ]
+    }
   };
 
-  const ProfileContent = () => (
-    <>
-      <div className="profile-main-info">
-        <div className="profile-left">
-          <img src={UserImg} alt="Profile" className="profile-image" />
-          <div className="profile-badges">
-            <div className="name">{userData.name}</div>
-            <div className="badge-group">
-              <span className="badge">{userData.id}</span>
-              <span className="badge">{userData.gender}</span>
-            </div>
-            <div className="badge-group">
-              <span className="badge">{userData.dob}</span>
-              <span className="badge">{userData.age}</span>
-            </div>
+  const renderMasterIDContent = () => (
+    <div className="masterid-content">
+      <div className="user-basic-info">
+        <div className="profile-image">
+          <div className="placeholder-image">
+            <i className="fas fa-user"></i>
           </div>
         </div>
-        <div className="profile-right">
-          <div className="account-date">
-            <span className="date-label">Account open date.</span>
-            <span className="date">{userData.accountDate}</span>
+        <div className="info-section">
+          <div className="info-item">
+            <i className="fas fa-user"></i>
+            <span className="label">Name</span>
+            <span className="value">{userData.name}</span>
           </div>
-        </div>
-      </div>
-
-      {/* Other Information */}
-      <div className="other-info-section">
-        <div className="other-info-header" style={{background:"#F47C7C",height:"50px" ,textAlign:"left",fontSize:"20px",boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)"}}>Other information</div>
-        
-        <div className="info-content">
-          <div className="left-section">
-            {/* KYC Verification */}
-            <div className="kyc-verification mb-4">
-              <h6 className="mb-3">KYC Verification</h6>
-              <div className="d-flex align-items-center gap-3">
-                <div className="kyc-item">
-                  <img src={FaceLock} alt="Face ID" className="kyc-icon" />
-                  <span className="verified-badge">✓</span>
-                </div>
-                <div className="kyc-item">
-                  <img src={Shield} alt="Shield" className="kyc-icon" />
-                  <span className="verified-badge">✓</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Locked Info Items */}
-            <div className="locked-item   shadow-lg " style={{background:"#F47C7C",height:"50px"}}  >
-              <span className="icon-wrapper" style={{marginRight:"10px"}}>
-                <img src={UserImg}  style={{borderRadius:"50%",width:"25px",height:"25px"}} alt="Family" className="small-icon" />
-              </span>
-              <span style={{fontSize:"16px"}} >Family info</span>
-              <FontAwesomeIcon icon={faLock} className="lock-icon mr-4" />
-            </div>
-            <div className="locked-item  shadow-lg " style={{background:"#F47C7C",height:"50px"}}  >
-              <span className="icon-wrapper">
-                <FontAwesomeIcon icon={faHouse} className="house-icon" />
-              </span>
-              <span style={{fontSize:"16px"}} >House hold</span>
-              <FontAwesomeIcon icon={faLock} style={{color:"black"}} className="lock-icon mr-4" />
-            </div>
-            <div className="locked-item shadow-lg " style={{background:"#F47C7C",height:"50px"}}  >
-            <span className="icon-wrapper">
-                <FontAwesomeIcon icon={faHouse} className="house-icon" />
-              </span>
-              <span style={{fontSize:"16px"}} >Encrypted Password</span>
-              <FontAwesomeIcon icon={faLock} style={{color:"black"}} className="lock-icon mr-4" />
-            </div>
-            <div className="locked-item shadow-lg " style={{background:"#F47C7C",height:"50px"}}  >
-            <span className="icon-wrapper">
-                <FontAwesomeIcon icon={faHouse} width={"50px"} className="house-icon" />
-              </span>
-              <span style={{fontSize:"16px"}} >Encrypted Password</span>
-              <FontAwesomeIcon icon={faLock} style={{color:"black"}} className="lock-icon mr-4" />
-            </div>
-            <div className="locked-item shadow-lg " style={{background:"#F47C7C",height:"50px"}}  >
-            <span className="icon-wrapper">
-                <FontAwesomeIcon icon={faHouse} className="house-icon" />
-              </span>
-              <span style={{fontSize:"16px"}} >Encrypted Password</span>
-              <FontAwesomeIcon icon={faLock} style={{color:"black"}} className="lock-icon mr-4" />
-            </div>
+          <div className="info-item">
+            <i className="fas fa-envelope"></i>
+            <span className="value">{userData.email}</span>
           </div>
-
-          <div className="right-section" style={{fontSize:"16px"}} >
-            <div className="nick-name">
-              <span className="label">NICK NAME</span>
-              <span className="value">{userData.nickName}</span>
-            </div>
-            <div className="contact-info">
-              <div className="info-item">
-                <FontAwesomeIcon icon={faEnvelope} className="icon" />
-                <span>{userData.email}</span>
-                <div className="verified-icon mr-4 ">
-                  <img src={Shield} alt="Verified" className="shield-icon" />
-                  <span className="verified-badge">✓</span>
-                </div>
-              </div>
-              <div className="info-item">
-                <FontAwesomeIcon icon={faPhone} className="icon" />
-                <span>{userData.phone}</span>
-                <div className="verified-icon mr-4">
-                  <img src={Shield} alt="Verified" className="shield-icon" />
-                  <span className="verified-badge">✓</span>
-                </div>
-              </div>
-              <div className="info-item">
-                <FontAwesomeIcon icon={faHouse} className="icon" />
-                <span>{userData.location}</span>
-              </div>
-            </div>
-
-            {/* Master ID and My ID Status */}
-            <div className="id-status mt-4">
-              <div className="status-item">
-                <h6>Master ID</h6>
-                <p className={`status ${userData.masterID.status === 'ACTIVE' ? 'active' : ''}`}>
-                  {userData.masterID.status}
-                </p>
-                {userData.masterID.id && <p className="id-number">{userData.masterID.id}</p>}
-              </div>
-              <div className="status-item">
-                <h6>My ID</h6>
-                <p className={`status ${userData.myID.status === 'ACTIVE' ? 'active' : ''}`}>
-                  {userData.myID.status}
-                </p>
-                {userData.myID.id && <p className="id-number">{userData.myID.id}</p>}
-              </div>
-              <div className="status-item">
-                <h6>Businesses</h6>
-                <p>{userData.businesses}</p>
-              </div>
-            </div>
+          <div className="info-item">
+            <i className="fas fa-phone"></i>
+            <span className="value">{userData.phone}</span>
+          </div>
+          <div className="info-item">
+            <i className="fas fa-map-marker-alt"></i>
+            <span className="value">{userData.location}</span>
+          </div>
+          <div className="info-item">
+            <i className="fas fa-id-card"></i>
+            <span className="value">{userData.masterID.id}</span>
+          </div>
+          <div className="info-item">
+            <i className="fas fa-id-badge"></i>
+            <span className="value">{userData.myID.id}</span>
           </div>
         </div>
       </div>
-      {/* ///////////////// */}
-    
-      {/* ////////////// */}
-    </>
+      <div className="verification-section">
+        <div className="status-box">
+          <h3>Status</h3>
+          <div className={`status-badge ${userData.masterID.status.toLowerCase()}`}>
+            {userData.masterID.status}
+          </div>
+        </div>
+        <div className="verified-by">
+          <h3>Verified by</h3>
+          <div className="verifier-info">
+            <img src="https://via.placeholder.com/50" alt="Verifier" className="verifier-image" />
+            <div className="verifier-details">
+              <p className="name">{userData.masterID.verifiedBy.name}</p>
+              <p className="id">{userData.masterID.verifiedBy.id}</p>
+              <p className="signature">Signature: {userData.masterID.verifiedBy.signature}</p>
+            </div>
+          </div>
+        </div>
+        <div className="proof-section">
+          <h3>Attach Proof</h3>
+          <div className="proof-list">
+            {userData.documents.proofs.map((proof, index) => (
+              <div key={index} className="proof-item">
+                <span className="proof-name">{proof.name}</span>
+                <span className={`proof-status ${proof.status.toLowerCase()}`}>
+                  {proof.status}
+                </span>
+                <button className="view-btn">
+                  <i className="fas fa-eye"></i>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
-// /////////////////////////////////////
-const ProfileContentOne = () => (
-  <>
-    <div className="profile-main-info">
-      <div className="profile-left">
-        <img src={UserImg} alt="Profile" className="profile-image" />
-        <div className="profile-badges">
-          <div className="name">{userData.name}</div>
-          <div className="badge-group">
-            <span className="badge">{userData.id}</span>
-            <span className="badge">{userData.gender}</span>
+
+  const renderMyIDContent = () => (
+    <div className="myid-content">
+      <div className="id-card">
+        <div className="id-header">
+          <h3>My ID Card</h3>
+          <span className={`status ${userData.myID.status}`}>
+            {userData.myID.status}
+          </span>
+        </div>
+        <div className="id-details">
+          <div className="id-photo">
+            <i className="fas fa-user"></i>
           </div>
-          <div className="badge-group">
-            <span className="badge">{userData.dob}</span>
-            <span className="badge">{userData.age}</span>
+          <div className="id-info">
+            <p><strong>ID:</strong> {userData.myID.id}</p>
+            <p><strong>Name:</strong> {userData.name}</p>
+            <p><strong>Email:</strong> {userData.email}</p>
+            <p><strong>Phone:</strong> {userData.phone}</p>
           </div>
         </div>
       </div>
-      <div className="profile-right">
-        <div className="account-date">
-          <span className="date-label">Account open date.</span>
-          <span className="date">{userData.accountDate}</span>
+    </div>
+  );
+
+  const renderMyIDVerificationContent = () => (
+    <div className="myid-content">
+      <div className="id-request-list">
+        <div className="id-request accepted">
+          <div className="user-info">
+            <div className="profile-placeholder"></div>
+            <div className="info-section">
+              <h3>Name <span>Pankaj</span></h3>
+              <div className="contact-info">
+                <div className="info-item">
+                  <i className="fas fa-envelope"></i>
+                  <span>pankaj@gmail.com</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-phone"></i>
+                  <span>+911234567890</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Bangalore, Karnataka, India, 144040</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-id-card"></i>
+                  <span>567XXXXXX567</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-address-card"></i>
+                  <span>btmv2523</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="verification-info">
+            <div className="verified-by">
+              <h4>Verified by</h4>
+              <div className="verifier">
+                <img src="path_to_verifier_image" alt="Raman Kumar" />
+                <div className="verifier-details">
+                  <h5>Raman Kumar</h5>
+                  <p>MBS1234567</p>
+                  <p>Signature: PIN</p>
+                  <div className="verification-date">
+                    <i className="far fa-clock"></i>
+                    <span>Accepted on: Jan 17, 2025 at 2:30 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="status-section">
+              <div className="status">
+                <h4>Status:</h4>
+                <span className="status-badge accepted">ACCEPTED</span>
+              </div>
+              <div className="reason">
+                <h4>Reason:</h4>
+                <p className="accepted-text">Your provided proofs are accepted</p>
+              </div>
+            </div>
+            <div className="proof-section">
+              <h4>Attach Proof:</h4>
+              <div className="proof-status">
+                <i className="fas fa-check-circle"></i>
+                <i className="fas fa-file-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="id-request rejected">
+          <div className="user-info">
+            <div className="profile-placeholder"></div>
+            <div className="info-section">
+              <h3>Name <span>Pankaj</span></h3>
+              <div className="contact-info">
+                <div className="info-item">
+                  <i className="fas fa-envelope"></i>
+                  <span>pankaj@gmail.com</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-phone"></i>
+                  <span>+911234567890</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Bangalore, Karnataka, India, 144040</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-id-card"></i>
+                  <span>567XXXXXX567</span>
+                </div>
+                <div className="info-item">
+                  <i className="fas fa-address-card"></i>
+                  <span>btmv2523</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="verification-info">
+            <div className="verified-by">
+              <h4>Verified by</h4>
+              <div className="verifier">
+                <img src="path_to_verifier_image" alt="Rohan Singh" />
+                <div className="verifier-details">
+                  <h5>Rohan Singh</h5>
+                  <p>MBS1234567</p>
+                  <p>Signature: PIN</p>
+                  <div className="verification-date rejected">
+                    <i className="far fa-clock"></i>
+                    <span>Rejected on: Jan 17, 2025 at 3:45 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="status-section">
+              <div className="status">
+                <h4>Status:</h4>
+                <span className="status-badge rejected">REJECT</span>
+              </div>
+              <div className="reason">
+                <h4>Reason:</h4>
+                <p className="rejected-text">Id Proof did not matched/Documents are fake</p>
+              </div>
+            </div>
+            <div className="proof-section">
+              <h4>Attach Proof:</h4>
+              <div className="proof-status">
+                <i className="fas fa-check-circle"></i>
+                <i className="fas fa-file-alt"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  );
 
-    {/* Other Information */}
-    <div className="other-info-section">
-      <div className="other-info-header" style={{background:"#F47C7C",height:"50px" ,textAlign:"left",fontSize:"20px",boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)"}}>Other information</div>
-      
-      <div className="info-content h-250 ">
-      
-
-       
+  const renderBusinessContent = () => (
+    <div className="business-content">
+      <div className="business-summary">
+        <div className="summary-card">
+          <h3>Total Businesses</h3>
+          <span className="count">{userData.business.total}</span>
+        </div>
+        <div className="summary-card">
+          <h3>Active</h3>
+          <span className="count active">{userData.business.active}</span>
+        </div>
+        <div className="summary-card">
+          <h3>Pending</h3>
+          <span className="count pending">{userData.business.pending}</span>
+        </div>
       </div>
-    </div>
-  </>
-);
-const ProfileContenttwo = () => (
-  
-  <>
-      <div className="profile-verify-info">
-            <Tabs
-              defaultActiveKey={rfIdActive ? "myid" : "master"}
-              id="uncontrolled-tab-example"
-              className="mb-3 mt-5"
-            >
-              <Tab eventKey="master" title="Master ID Request">
-                <h4 className="mb-4">Master ID Request 2/3</h4>
-                <div className="tab-content-data">
-                  <div className="row">
-                    <div className="col-12 col-md-6 col-lg-5 border-md-right">
-                      <div className="master-req-img-container">
-                        <div className="master-req-img d-flex align-items-center">
-                          <span className="img"></span>
-                        </div>
-                        <div className="master-req-content pl-3">
-                          <p className="mb-1">
-                            Name <span>Pankaj</span>
-                          </p>
-                          <p className="mb-0">
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faEnvelope} />
-                            </span>{" "}
-                            <span>pankaj@gmail.com</span>
-                          </p>
-                          <p>
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faPhone} />
-                            </span>{" "}
-                            <span>+91123456789</span>
-                          </p>
-                          <p>
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faLocationDot} />
-                            </span>{" "}
-                            <span>Bangalore, Karnataka, India, 144040</span>
-                          </p>
-                          <p>
-                            <img src={AadharImg} alt="aadhar" />{" "}
-                            <span>567XXXXXX567</span>
-                          </p>
-                          <p>
-                            <img src={PanCardImg} alt="pan" />{" "}
-                            <span>btmv2523</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-7">
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-lg-4">
-                          <div
-                            className="master-verified d-flex flex-column justify-content-center align-items-center"
-                            style={{ gap: 8 }}
-                          >
-                            <strong>Verified by</strong>
-                            <img src={UserImg} alt="proof" className="proof" />
-                            <strong>Raman Kumar</strong>
-                            <strong>MBS1234567</strong>
-                            <strong>Signature: PIN</strong>
-                            <p className="mb-0">You</p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-8">
-                          <div className="master-status">
-                            <h5 className="accept">
-                              Status: <strong>ACCEPTED</strong>
-                            </h5>
-                            <h5 className="accept">
-                              Reason:
-                              <strong>Your provided proofs are accepted</strong>
-                            </h5>
-                            <div className="d-flex flex-column">
-                              <h5>
-                                Attach Proof:
-                                <img
-                                  src={ProofImg}
-                                  alt="proof"
-                                  className="proof"
-                                />
-                              </h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="tab-content-data">
-                  <div className="row">
-                    <div className="col-12 col-md-6 col-lg-5 border-md-right">
-                      <div className="master-req-img-container">
-                        <div className="master-req-img d-flex align-items-center">
-                          <span className="img"></span>
-                        </div>
-                        <div className="master-req-content pl-3">
-                          <p className="mb-1">
-                            Name <span>Pankaj</span>
-                          </p>
-                          <p className="mb-0">
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faEnvelope} />
-                            </span>{" "}
-                            <span>pankaj@gmail.com</span>
-                          </p>
-                          <p>
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faPhone} />
-                            </span>{" "}
-                            <span>+91123456789</span>
-                          </p>
-                          <p>
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faLocationDot} />
-                            </span>{" "}
-                            <span>Bangalore, Karnataka, India, 144040</span>
-                          </p>
-                          <p>
-                            <img src={AadharImg} alt="aadhar" />{" "}
-                            <span>567XXXXXX567</span>
-                          </p>
-                          <p>
-                            <img src={PanCardImg} alt="pan" />{" "}
-                            <span>btmv2523</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-7">
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-lg-4">
-                          <div
-                            className="master-verified d-flex flex-column justify-content-center align-items-center"
-                            style={{ gap: 8 }}
-                          >
-                            <strong>Verified by</strong>
-                            <img src={UserImg} alt="proof" className="proof" />
-                            <strong>Rohan Singh</strong>
-                            <strong>MBS1234567</strong>
-                            <strong>Signature: PIN</strong>
-                            {/* <p className="mb-0">You</p> */}
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-8">
-                          <div className="master-status">
-                            <h5 className="reject">
-                              Status: <strong>REJECT</strong>
-                            </h5>
-                            <h5 className="reject">
-                              Reason:
-                              <strong>
-                                Id Proof did not matched/Documents are fake
-                              </strong>
-                            </h5>
-                            <div className="d-flex flex-column">
-                              <h5>
-                                Attach Proof:
-                                <img
-                                  src={ProofImg}
-                                  alt="proof"
-                                  className="proof"
-                                />
-                              </h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Tab>
-              <Tab eventKey="myid" title="My ID">
-                <div className="tab-content-data">
-                  <div className="row">
-                    <div className="col-12 col-md-6 col-lg-5 border-md-right">
-                      <div className="master-req-img-container">
-                        <div className="master-req-img d-flex align-items-center">
-                          <span className="img"></span>
-                        </div>
-                        <div className="master-req-content pl-3">
-                          <p className="mb-1">
-                            Name <span>Pankaj</span>
-                          </p>
-                          <p className="mb-0">
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faEnvelope} />
-                            </span>{" "}
-                            <span>pankaj@gmail.com</span>
-                          </p>
-                          <p>
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faPhone} />
-                            </span>{" "}
-                            <span>+91123456789</span>
-                          </p>
-                          <p>
-                            <span className="icon">
-                              <FontAwesomeIcon icon={faLocationDot} />
-                            </span>{" "}
-                            <span>Bangalore, Karnataka, India, 144040</span>
-                          </p>
-                          <p>
-                            <img src={AadharImg} alt="aadhar" />{" "}
-                            <span>567XXXXXX567</span>
-                          </p>
-                          <p>
-                            <img src={PanCardImg} alt="pan" />{" "}
-                            <span>btmv2523</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-7">
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-lg-4">
-                          <div
-                            className="master-verified d-flex flex-column justify-content-center align-items-center"
-                            style={{ gap: 8 }}
-                          >
-                            <strong>Verified by</strong>
-                            <img src={UserImg} alt="proof" className="proof" />
-                            <strong>Rohan Singh</strong>
-                            <strong>MBS1234567</strong>
-                            <strong>Signature: PIN</strong>
-                            <p className="mb-0">You</p>
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-8">
-                          <div className="master-status">
-                            <h5 className="accept">
-                              Status: <strong>ACCEPTED</strong>
-                            </h5>
-                            <h5 className="accept">
-                              Reason:
-                              <strong>Your provided proofs are accepted</strong>
-                            </h5>
-                            <div className="d-flex flex-column">
-                              <h5>
-                                Attach Proof:
-                                <img
-                                  src={ProofImg}
-                                  alt="proof"
-                                  className="proof"
-                                />
-                              </h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Tab>
-              <Tab eventKey="business" title="Business" disabled>
-                Tab content for Contact
-              </Tab>
-            </Tabs>
+      <div className="business-list">
+        {userData.business.businesses.map((business, index) => (
+          <div key={index} className="business-card">
+            <div className="business-info">
+              <h4>{business.name}</h4>
+              <p className="type">{business.type}</p>
+              <span className={`status ${business.status.toLowerCase()}`}>
+                {business.status}
+              </span>
+            </div>
+            <div className="business-actions">
+              <button className="action-btn">
+                <i className="fas fa-edit"></i>
+              </button>
+              <button className="action-btn">
+                <i className="fas fa-trash"></i>
+              </button>
+            </div>
           </div>
-
-    {/* Other Information */}
-    <div className="other-info-section">
-      <div className="other-info-header" style={{background:"#F47C7C",height:"50px" ,textAlign:"left",fontSize:"20px",boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)"}}>Other information</div>
-      
-      <div className="info-content h-250 ">
-      
-
-       
+        ))}
       </div>
     </div>
-  </>
-);
+  );
 
   return (
-    <>
-    <Container className="user-profile-details">
-      <Tabs
-        defaultActiveKey="account1"
-        className="mb-3 user-account-tabs"
-        >
-        <Tab eventKey="account1" title="USER ACCOUNT">
-          <ProfileContent />
-          
-        </Tab>
-        
-        <Tab eventKey="account2" title="USER ACCOUNT">
-          <ProfileContentOne />
-        </Tab>
-        <Tab eventKey="account3" title="USER ACCOUNT">
-          <ProfileContenttwo />
-        </Tab>
-      </Tabs>
-    </Container>
-    <div className="container mt-5 ">
-        
-        <div className="profile-container font-weight-bold text-dark " style={{ display:"flex",alignItems:"center",paddingLeft:"20px", fontSize:"20px",backgroundColor:"white",height:"50px",boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)"}} >
-          Login History
-          <div className="profile-verify-info" >
-
+    <div className="user-profile-details">
+      <div className="profile-header">
+        <div className="user-avatar">
+          <img src={selectedUser?.profile_pic || 'https://via.placeholder.com/150'} alt="Profile" />
+          <div className="status-badge" data-status={userData.masterID.status.toLowerCase()}></div>
+        </div>
+        <div className="user-info">
+          <h2>{userData.name}</h2>
+          <div className="user-tags">
+            <span className="tag">ID: {userData.masterID.id}</span>
+            <span className="tag">My ID: {userData.myID.id}</span>
           </div>
-        
         </div>
       </div>
-      <div className="container mt-5 ">
-        <div className="profile-container font-weight-bold text-dark" style={{ display:"flex",alignItems:"center",paddingLeft:"20px", fontSize:"20px",backgroundColor:"white",height:"50px",boxShadow:"0px 2px 4px rgba(0, 0, 0, 0.25)"}}>
-          Activity
-          <div className="profile-verify-info" >
 
-          
-          </div>
-        
-        </div>
-        </div>
-    
-        </>
+      <div className="main-tabs">
+        <button 
+          className={`tab ${activeTab === 'masterid' ? 'active' : ''}`}
+          onClick={() => setActiveTab('masterid')}
+        >
+          Master ID Request
+        </button>
+        <button 
+          className={`tab ${activeTab === 'myid' ? 'active' : ''}`}
+          onClick={() => setActiveTab('myid')}
+        >
+          My ID
+        </button>
+        <button 
+          className={`tab ${activeTab === 'business' ? 'active' : ''}`}
+          onClick={() => setActiveTab('business')}
+        >
+          Business
+        </button>
+      </div>
+
+      <div className="tab-content">
+        {activeTab === 'masterid' && renderMasterIDContent()}
+        {activeTab === 'myid' && renderMyIDVerificationContent()}
+        {activeTab === 'business' && renderBusinessContent()}
+      </div>
+    </div>
   );
 };
 

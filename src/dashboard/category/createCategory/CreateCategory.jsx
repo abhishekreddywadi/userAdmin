@@ -12,6 +12,8 @@ import AddDepartmentModal from "./addDepartmentModal/AddDepartmentModal";
 import BusinessSubCatModal from "./businessSubCatModal/BusinessSubCatModal";
 import AddClassModal from "./addClassModal/AddClassModal";
 import AddCourseCategory from "./addCourseCategory/AddCourseCategory";
+import AddBusinessCatModal from "./addBusinessModal/AddBusinessModal";
+import AddHomeCategory from "./addHomeCategory/AddHomeCategory";
 
 const initialFeatures = [
   { id: '1', name: 'Verify user.', limit: 500, enabled: false, checked: false },
@@ -36,7 +38,7 @@ const partners = [
 const categoryTableData = [
   {
     icon: UserOne,
-    name: "Dipatement",
+    name: "Department",
     createdBy: "Sunil Yadav",
     createdId: "ID MUB12345",
     date: "25/12/2024",
@@ -78,7 +80,7 @@ const categoryTableData = [
   },
   {
     icon: UserThree,
-    name: "home society",
+    name: "home & society",
     createdBy: "Sunil Yadav",
     createdId: "ID MUB12345",
     date: "25/12/2024",
@@ -149,6 +151,7 @@ const CreateCategory = () => {
   const [categoryData, setCategoryData] = useState(categoryTableData);
   const [departmentData, setDepartmentData] = useState(categoryDepartmentTableData);
   const [features, setFeatures] = useState(initialFeatures);
+const [showHomeModal, setShowHomeModal] = useState(false)
 
 
   
@@ -211,6 +214,10 @@ const CreateCategory = () => {
   const handleAddEventModalShow = () => setShowAddEventModal(true);
   const handleAddEventModalHide = () => setShowAddEventModal(false);
 
+  const handleHomeModalShow = () => setShowHomeModal(true);
+  const handleHomeModalHide = () => setShowHomeModal(false);
+  
+
   const handleAddModalFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -232,7 +239,16 @@ const CreateCategory = () => {
       reader.readAsDataURL(file);
     }
   };
-
+ const handleHomeModalFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setDepartmentModalImageSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const handleDepartmentFormFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -355,7 +371,7 @@ const CreateCategory = () => {
                         Add New
                       </button>
                     </div>
-                    <div className="crete-category-filter  mt-4 mt-md-5 ">
+                    <div className="crete-category-filter  mt-4 mt-md-5 " style={{ display: "flex", justifyContent: "space-between",margin: "0px 20px 0px 20px"}}  >
                       <div className="entries mb-2">
                         Show
                         <select className="mx-2">
@@ -366,7 +382,7 @@ const CreateCategory = () => {
                         </select>
                         entries
                       </div>
-                      <div className="filters mb-4">
+                      <div className="filters mb-4" style={{ position: "absolute",right: "100px"}} >
                         <div className="row">
                           <div className="col-md-4 d-none d-md-flex"></div>
                           <div
@@ -379,19 +395,21 @@ const CreateCategory = () => {
                               </label>
                               <select name="" id="">
                                 <option value="">Individual</option>
+                                <option value="">Business</option>
+                                <option value="">Department</option>
+                                <option value="">Event</option>
+                                <option value="">Course</option>
+                                <option value="">Staff</option>
                               </select>
                               
                             </div>
                             <div className="input-container d-flex flex-column">
-                              <label htmlFor="" className="d-flex"></label>
-                              <select name="" id=""></select>
+                              <label htmlFor="">Search</label>
+                              <input placeholder="Search here" style={{ backgroundColor: "#F2F2F2",position: "relative",right: "10px", marginRight: "10px"}} type="search" name="" id="" />
                             </div>
                           </div>
                           <div className="col-12 col-md-4">
-                            <div className="input-container d-flex flex-column">
-                              <label htmlFor="">Search</label>
-                              <input type="search" name="" id="" />
-                            </div>
+                          
                           </div>
                         </div>
                       </div>
@@ -472,7 +490,7 @@ const CreateCategory = () => {
                                 </td>
                                 <td>
                                   <button type="button" className="creation" onClick={(e) => handleStepTwo(e, data.name)}>
-                                    Create
+                                    View
                                   </button>
                                 </td>
                               </tr>
@@ -484,7 +502,7 @@ const CreateCategory = () => {
                     </>
                   ) :
                   stepTwoActive ? (
-                    selectedData == "Dipatement" ? (
+                    selectedData == "Department" ? (
                       <>
                         <div className="add-category d-md-flex align-items-center justify-content-between text-center pt-4">
                           <h3 className="mb-3 mb-md-0 text-dark font-weight-bold h4">
@@ -505,10 +523,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -526,10 +544,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -631,7 +645,7 @@ const CreateCategory = () => {
                       <>
                         <div className="add-category d-md-flex align-items-center justify-content-between text-center pt-4">
                           <h3 className="mb-3 mb-md-0 text-dark font-weight-bold h4">
-                            All Department Category
+                            All Business Category
                           </h3>
                           <button type="button" className="creation" onClick={handleDepartmentModalShow}>
                             Add Category
@@ -648,10 +662,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -669,10 +683,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -791,10 +801,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -812,10 +822,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -919,7 +925,7 @@ const CreateCategory = () => {
                           <h3 className="mb-3 mb-md-0 text-dark font-weight-bold h4">
                             All Home Society Category
                           </h3>
-                          <button type="button" className="creation" onClick={handleAddEventModalShow}>
+                          <button type="button" className="creation" onClick={handleHomeModalShow}>
                             Add Category
                           </button>
                         </div>
@@ -934,10 +940,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -955,10 +961,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -1078,10 +1080,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -1099,10 +1101,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -1222,10 +1220,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -1243,10 +1241,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -1366,10 +1360,10 @@ const CreateCategory = () => {
                             </select>
                             entries
                           </div>
-                          <div className="filters mb-4">
-                            <div className="row">
-                              <div className="col-md-4 d-md-flex">
-                                <button className="back-btn" onClick={(e) => handleStepOne(e, selectedData)}>
+                          <div className="filters mb-4" style={{ position: "absolute",right: "60px" }}  >
+                            <div className="row d-flex align-items-center justify-content-center ">
+                              <div className="col-md-4 d-md-flex" style={{textAlign:"left", position:"relative",top:"15px", margin:"auto 0px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                                <button className="back-btn"  style={{width:"fit-content", height:"fit-content"}} onClick={(e) => handleStepOne(e, selectedData)}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                                   </svg>
@@ -1387,10 +1381,6 @@ const CreateCategory = () => {
                                   <select name="" id="">
                                     <option value="">Individual</option>
                                   </select>
-                                </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
                                 </div>
                               </div>
                               <div className="col-12 col-md-4">
@@ -1491,7 +1481,7 @@ const CreateCategory = () => {
                     
                   ) :
                   stepThreeActive && (
-                    selectedData == "Dipatement" ? (
+                    selectedData == "Department" ? (
                       <>
 
                         <div className="crete-category-filter mt-4 mt-md-5 ">
@@ -1514,41 +1504,41 @@ const CreateCategory = () => {
                             Care of Information
                           </h3>
                           <form action="">
-                              <div className="row" style={{gap: '25px 0'}}>
-                                  <div className="col-12 col-md-4">
-                                      <div className="input-container">
-                                          <label htmlFor="">Brand * (Company Name)</label>
-                                          <input type="text" />
+                              <div className="row">
+                                  <div className="col-8 col-md-4">
+                                      <div className="input-container" style={{width: '100%'}}  >
+                                          <label htmlFor="" style={{width: '100%', textAlign: 'left',paddingRight: '30px'}}  > Brand * (Company Name)</label>
+                                          <input style={{backgroundColor:"#C4D9FF",borderRadius: '0'}}  type="text" />
                                       </div>
                                   </div>
-                                  <div className="col-12 col-md-4">
+                                  <div className="col-8 col-md-4">
                                       <div className="input-container">
                                           <label htmlFor="">Website Name</label>
-                                          <input type="text" />
+                                          <input style={{width: '100%',backgroundColor:"#C4D9FF"}} type="text" />
                                       </div>
                                   </div>
                                   <div className="col-12 col-md-4">
                                       <div className="input-container">
                                           <label htmlFor="">Official Email</label>
-                                          <input type="email" />
+                                          <input style={{width: '100%',backgroundColor:"#C4D9FF"}}  type="email" />
                                       </div>
                                   </div>
                                   <div className="col-12 col-md-4">
                                       <div className="input-container">
                                           <label htmlFor="">Phone *</label>
-                                          <input type="text" />
+                                          <input style={{width: '100%',backgroundColor:"#C4D9FF"}}  type="text" />
                                       </div>
                                   </div>
                                   <div className="col-12 col-md-4">
                                       <div className="input-container">
                                           <label htmlFor="">Status</label>
-                                          <input type="text" />
+                                          <input style={{width: '100%',backgroundColor:"#C4D9FF"}} type="text" />
                                       </div>
                                   </div>
                                   <div className="col-12 col-md-4">
                                       <div className="input-container">
                                           <label htmlFor=""></label>
-                                          <input type="email" />
+                                          <input style={{width: '100%',backgroundColor:"#C4D9FF"}} type="email" />
                                       </div>
                                   </div>
                                   <div className="col-12 col-md-4">
@@ -1556,7 +1546,7 @@ const CreateCategory = () => {
                                           <label htmlFor="">Co individual ID</label>
                                           <div className="d-flex">
                                             <input type="number" />
-                                            <button type="button">Check</button>
+                                            <button type="button" style={{marginLeft: '10px', width: '100px',padding: '10px', height: '50px', borderRadius: '5px',color: '#fff', backgroundColor: '#4F8DEB'}}  >Check</button>
                                           </div>
                                       </div>
                                   </div>
@@ -1565,7 +1555,7 @@ const CreateCategory = () => {
                                           <label htmlFor="">Brand (Company ID)</label>
                                           <div className="d-flex">
                                             <input type="number" />
-                                            <button type="button">Check</button>
+                                            <button type="button" style={{marginLeft: '10px', width: '100px',padding: '10px', height: '50px', borderRadius: '5px',color: '#fff', backgroundColor: '#4F8DEB'}}  >Check</button>
                                           </div>
                                       </div>
                                   </div>
@@ -1761,12 +1751,8 @@ const CreateCategory = () => {
                                     <option value="">Individual</option>
                                   </select>
                                 </div>
-                                <div className="input-container d-flex flex-column">
-                                  <label htmlFor="" className="d-flex"></label>
-                                  <select name="" id=""></select>
-                                </div>
                               </div>
-                              <div className="col-12 col-md-4">
+                              <div className="col-12 col-md-4"  >
                                 <div className="input-container d-flex flex-column">
                                   <label htmlFor="">Search</label>
                                   <input type="search" name="" id="" />
@@ -1870,7 +1856,12 @@ const CreateCategory = () => {
       {showDepartmentModal && (
         <AddDepartmentModal showDepartmentModal={showDepartmentModal} handleDepartmentModalHide={handleDepartmentModalHide} handleDepartmentModalFileChange={handleDepartmentModalFileChange} departmentModalImageSrc={departmentModalImageSrc} business={selectedData} />
       )}
-
+      {showBusinessCatModal && (
+      <AddBusinessCatModal showBusinessCatModal={showBusinessCatModal} handleBusinessCatModalHide={handleBusinessCatModalHide} handleBusinessCatModalFileChange={handleBusinessCatModalFileChange} businessCatModalImageSrc={businessCatModalImageSrc} business={selectedData} />
+      )}
+      {showHomeModal && (
+        <AddHomeCategory showHomeModal={showHomeModal} handleHomeModalHide={handleHomeModalHide} handleHomeModalFileChange={handleHomeModalFileChange} homeModalImageSrc={businessCatModalImageSrc} business={selectedData} />
+      )}
       {showBusinessCatModal && (
         <BusinessSubCatModal showBusinessCatModal={showBusinessCatModal} handleBusinessCatModalHide={handleBusinessCatModalHide} handleBusinessCatModalFileChange={handleBusinessCatModalFileChange} businessCatModalImageSrc={businessCatModalImageSrc} business={selectedData} />
       )}
