@@ -14,6 +14,8 @@ import AddClassModal from "./addClassModal/AddClassModal";
 import AddCourseCategory from "./addCourseCategory/AddCourseCategory";
 import AddBusinessCatModal from "./addBusinessModal/AddBusinessModal";
 import AddHomeCategory from "./addHomeCategory/AddHomeCategory";
+import AddSubCategoryModal from './addSubCategoryModal/AddSubCategoryModal';
+import { Button } from 'react-bootstrap';
 
 const initialFeatures = [
   { id: '1', name: 'Verify user.', limit: 500, enabled: false, checked: false },
@@ -164,6 +166,39 @@ const [showHomeModal, setShowHomeModal] = useState(false)
   
   const [showAddEventModal, setShowAddEventModal] = useState(false)
   const [addModalEventImageSrc, setAddModalEventImageSrc] = useState(null)
+  const [showSubCategoryModal, setShowSubCategoryModal] = useState(false);
+const [selectedCategory, setSelectedCategory] = useState({
+  type: '',
+  parentBusiness: '',
+  category: '',
+  department: ''
+});
+const handleSubCategoryModalShow = (type, parentBusiness, category, department) => {
+  setSelectedCategory({
+    type,
+    parentBusiness,
+    category,
+    department
+  });
+  setShowSubCategoryModal(true);
+};
+
+const handleSubCategoryModalClose = () => {
+  setShowSubCategoryModal(false);
+  setSelectedCategory({
+    type: '',
+    parentBusiness: '',
+    category: '',
+    department: ''
+  });
+};
+const [businessCategories, setBusinessCategories] = useState([
+  {
+    parentBusiness: 'Individual',
+    category: 'Information Technology',
+    department: 'IT Department'
+  }
+]);
   
   const handleToggle = (index) => {
     const updatedCheckedStates = [...checkedStates];
@@ -1714,9 +1749,26 @@ const [showHomeModal, setShowHomeModal] = useState(false)
                           <h3 className="mb-3 mb-md-0 text-dark font-weight-bold h4">
                             Sub Category
                           </h3>
-                          <button type="button" className="creation" onClick={handleBusinessCatModalShow}>
-                            Add Sub Category
-                          </button>
+                          {businessCategories.map((businessCategory, index) => (
+  <tr key={index}>
+    {/* ... other table cells ... */}
+    <td>
+      <Button
+        variant="primary"
+        onClick={() => handleSubCategoryModalShow(
+          '',
+          businessCategory.parentBusiness,
+          businessCategory.category,
+          businessCategory.department
+        )}
+        className="creation"
+      >
+        Add Sub Category
+      </Button>
+    </td>
+    {/* ... other table cells ... */}
+  </tr>
+))}
                         </div>
                         <div className="crete-category-filter  mt-4 mt-md-5 ">
                           <div className="entries mb-2">
@@ -1848,6 +1900,14 @@ const [showHomeModal, setShowHomeModal] = useState(false)
               </div>
           </div>
         </div>
+        <AddSubCategoryModal
+  show={showSubCategoryModal}
+  handleClose={handleSubCategoryModalClose}
+  categoryType={selectedCategory.type}
+  parentBusiness={selectedCategory.parentBusiness}
+  category={selectedCategory.category}
+  department={selectedCategory.department}
+/>
       </div>
       {showAddModal && (
         <AddNewModal showAddModal={showAddModal} handleAddModalHide={handleAddModalHide} handleAddModalFileChange={handleAddModalFileChange} addModalImageSrc={addModalImageSrc} />

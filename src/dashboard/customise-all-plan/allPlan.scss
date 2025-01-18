@@ -130,4 +130,186 @@
         border-top: 1px solid #e3d5e5;
     }
   }
-  
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalFadeIn 0.3s ease-out;
+
+      .modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #E5E7EB;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+          margin: 0;
+          font-size: 20px;
+          font-weight: 600;
+          color: #1F2937;
+        }
+
+        .close-button {
+          background: none;
+          border: none;
+          font-size: 24px;
+          color: #6B7280;
+          cursor: pointer;
+          padding: 4px;
+          line-height: 1;
+          
+          &:hover {
+            color: #1F2937;
+          }
+        }
+      }
+
+      .plan-form {
+        padding: 24px;
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+
+          .form-group {
+            &.full-width {
+              grid-column: 1 / -1;
+            }
+
+            label {
+              display: block;
+              font-size: 14px;
+              font-weight: 500;
+              color: #374151;
+              margin-bottom: 8px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            select,
+            textarea {
+              width: 100%;
+              padding: 8px 12px;
+              border: 1px solid #D1D5DB;
+              border-radius: 6px;
+              font-size: 14px;
+              color: #1F2937;
+              background: white;
+              transition: border-color 0.2s ease;
+
+              &:focus {
+                outline: none;
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+              }
+
+              &::placeholder {
+                color: #9CA3AF;
+              }
+            }
+
+            textarea {
+              resize: vertical;
+              min-height: 100px;
+            }
+
+            input[type="file"] {
+              border: 1px dashed #D1D5DB;
+              padding: 20px;
+              text-align: center;
+              cursor: pointer;
+　　 　 　 　
+              &:hover {
+                border-color: #3B82F6;
+                background: #F3F4F6;
+              }
+            }
+          }
+        }
+
+        .form-actions {
+          margin-top: 24px;
+          padding-top: 20px;
+          border-top: 1px solid #E5E7EB;
+          display: flex;
+          justify-content: flex-end;
+          gap: 12px;
+
+          button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &.cancel-btn {
+              background: white;
+              border: 1px solid #D1D5DB;
+              color: #4B5563;
+
+              &:hover {
+                background: #F3F4F6;
+                border-color: #9CA3AF;
+              }
+            }
+
+            &.submit-btn {
+              background: #3B82F6;
+              border: 1px solid #2563EB;
+              color: white;
+
+              &:hover {
+                background: #2563EB;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .modal-overlay {
+      .modal-content {
+        width: 95%;
+        margin: 20px;
+
+        .plan-form {
+          .form-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+    }
+  }

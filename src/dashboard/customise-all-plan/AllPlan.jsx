@@ -7,8 +7,210 @@ import ConstructionImg from "../../assets/img/under-construction.png";
 const AllPlan = () => {
   const [viewMode, setViewMode] = useState("grid");
   const [key, setKey] = useState('individual');
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    category: '',
+    planImage: null,
+    planName: '',
+    description: '',
+    price: '',
+    discount: '',
+    comparePrice: '',
+    gstPercentage: '',
+    durationType: 'monthly', // monthly, yearly, or days
+    duration: '',
+  });
 
-  function GridView() {
+  const planCategories = [
+    'Basic',
+    'Premium',
+    'Enterprise',
+    'Custom'
+  ];
+
+  const handleInputChange = (e) => {
+    const { name, value, type } = e.target;
+    if (type === 'file') {
+      setFormData({
+        ...formData,
+        [name]: e.target.files[0]
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log(formData);
+    setShowModal(false);
+  };
+
+  const renderModal = () => (
+    <div className={`modal-overlay ${showModal ? 'show' : ''}`}>
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2>Create New Plan</h2>
+          <button className="close-button" onClick={() => setShowModal(false)}>×</button>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="plan-form">
+          <div className="form-grid">
+            <div className="form-group">
+              <label htmlFor="category">Plan Category</label>
+              <select 
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select Category</option>
+                {planCategories.map((category) => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="planImage">Plan Image</label>
+              <input 
+                type="file"
+                id="planImage"
+                name="planImage"
+                onChange={handleInputChange}
+                accept="image/*"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="planName">Plan Name</label>
+              <input 
+                type="text"
+                id="planName"
+                name="planName"
+                value={formData.planName}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group full-width">
+              <label htmlFor="description">Description</label>
+              <textarea 
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                rows="3"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="price">Price</label>
+              <input 
+                type="number"
+                id="price"
+                name="price"
+                value={formData.price}
+                onChange={handleInputChange}
+                required
+                min="0"
+                step="0.01"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="discount">Discount (%)</label>
+              <input 
+                type="number"
+                id="discount"
+                name="discount"
+                value={formData.discount}
+                onChange={handleInputChange}
+                min="0"
+                max="100"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="comparePrice">Compare Price</label>
+              <input 
+                type="number"
+                id="comparePrice"
+                name="comparePrice"
+                value={formData.comparePrice}
+                onChange={handleInputChange}
+                min="0"
+                step="0.01"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="gstPercentage">GST Percentage</label>
+              <input 
+                type="number"
+                id="gstPercentage"
+                name="gstPercentage"
+                value={formData.gstPercentage}
+                onChange={handleInputChange}
+                required
+                min="0"
+                max="100"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="durationType">Duration Type</label>
+              <select 
+                id="durationType"
+                name="durationType"
+                value={formData.durationType}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+                <option value="days">Days</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="duration">
+                Duration {formData.durationType === 'days' ? '(Days)' : '(Number of months/years)'}
+              </label>
+              <input 
+                type="number"
+                id="duration"
+                name="duration"
+                value={formData.duration}
+                onChange={handleInputChange}
+                required
+                min="1"
+              />
+            </div>
+          </div>
+
+          <div className="form-actions">
+            <button type="button" className="cancel-btn" onClick={() => setShowModal(false)}>
+              Cancel
+            </button>
+            <button type="submit" className="submit-btn">
+              Create Plan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+
+  const GridView = () => {
     const plans = [
       {
         id: 1,
@@ -51,7 +253,7 @@ const AllPlan = () => {
     );
   }
 
-  function TableView() {
+  const TableView = () => {
     const plans = [
       {
         id: 1,
@@ -137,7 +339,7 @@ const AllPlan = () => {
             </div>
 
             <div className="view-mode-switcher">
-              <button>Create Plans</button>
+              <button onClick={() => setShowModal(true)}>Create Plans</button>
               <button>Create Packages</button>
             </div>
             {viewMode === "grid" ? <GridView /> : <TableView />}
@@ -173,7 +375,7 @@ const AllPlan = () => {
             </div>
 
             <div className="view-mode-switcher">
-              <button>Create Plans</button>
+              <button onClick={() => setShowModal(true)}>Create Plans</button>
               <button>Create Packages</button>
             </div>
             {viewMode === "grid" ? <GridView /> : <TableView />}
@@ -209,13 +411,14 @@ const AllPlan = () => {
             </div>
 
             <div className="view-mode-switcher">
-              <button>Create Plans</button>
+              <button onClick={() => setShowModal(true)}>Create Plans</button>
               <button>Create Packages</button>
             </div>
             {viewMode === "grid" ? <GridView /> : <TableView />}
           </Tab>
         </Tabs>
       </div>
+      {showModal && renderModal()}
     </div>
   );
 };
